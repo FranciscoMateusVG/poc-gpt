@@ -14,12 +14,10 @@ const messages: ChatCompletionRequestMessage[] = [
     Patrick is originally from Brazil where he received his BS in Industrial Engineering. He then moved to the United States where he received his MBA at Stanford University. As a busy father of three, he was shocked by how hard it was to send bill payments in the US compared to his home country of Brazil, which has a centralized online payment system. Patrick wanted to change this, which inspired the founding of Papaya with his friend and colleague, Jason Meltzer. Before co-founding Papaya, Patrick worked at Macquarie, the World Bank, and the New Ventures Group at ideaLab.
     Patrick lives in Sherman Oaks with his wife and three kids. He enjoys photography, cycling, and cheering on Brazil in soccer.
     Jason holds a BS in Engineering from the California Institute of Technology (Caltech) and a PhD in Computer Science from UCLA. Prior to co-founding Papaya, Jason worked at iRobot, where he led development for the computer vision technology behind the Roomba. He has authored several patents and publications in computer vision and robotics, and has previously worked in academia, industrial research, and agricultural robotics.
-    Jason lives in Pasadena with his wife and two year old son where he enjoys
+    Jason lives in Pasadena with his wife and two year old son where he enjoys.
     `,
   },
 ];
-
-const teste: string[] = [];
 
 export const createWebSocketServer = (
   chatService: ChatService,
@@ -33,8 +31,7 @@ export const createWebSocketServer = (
       try {
         const chatMessage: ChatMessage = JSON.parse(message.toString());
         messages.push({ role: 'user', content: chatMessage.content });
-        teste.push(chatMessage.content);
-        const chatGPTResponse = await chatService.generateResponse(teste);
+        const chatGPTResponse = await chatService.generateResponse(messages);
         messages.push(chatGPTResponse);
         ws.send(JSON.stringify(messages));
       } catch (error) {
