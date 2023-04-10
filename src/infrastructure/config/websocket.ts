@@ -30,6 +30,7 @@ export const createWebSocketServer = (
     ws.on('message', async (message) => {
       try {
         const chatMessage: ChatMessage = JSON.parse(message.toString());
+        console.log('Received: %s', chatMessage.content);
         messages.push({ role: 'user', content: chatMessage.content });
         const chatGPTResponse = await chatService.generateResponse(messages);
         messages.push(chatGPTResponse);
@@ -37,6 +38,10 @@ export const createWebSocketServer = (
       } catch (error) {
         console.log(error);
       }
+    });
+
+    ws.on('close', () => {
+      console.log('Disconnected!');
     });
   });
 

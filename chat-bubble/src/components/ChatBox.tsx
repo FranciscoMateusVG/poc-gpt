@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ChatWindow from './ChatWindow';
 
 const ChatBot: React.FC = () => {
-  const [isChatOpen, setIsChatOpen] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);

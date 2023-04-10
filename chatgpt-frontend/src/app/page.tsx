@@ -26,7 +26,6 @@ const IndexPage = () => {
     };
   }, []);
 
-  console.log(messages);
   const handleSendMessage = (text: string) => {
     const message: ChatMessageModel = { role: 'You', content: text };
     setMessages((prevMessages) => [...prevMessages, message]);
